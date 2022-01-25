@@ -53,7 +53,7 @@ const Sale = (sequelize, DataTypes) => {
     },
   },
   {
-    tableName: 'Sales',
+    tableName: 'sales',
     timestamps: true,
     underscored: true,
   });
