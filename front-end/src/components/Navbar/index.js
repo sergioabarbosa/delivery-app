@@ -45,6 +45,7 @@ const Navbar = () => {
       className={ `nav-button${!buttonSelected ? '-selected' : ''}` }
       type="button"
       onClick={ () => navigate('/customer/orders') }
+      data-testid="customer_products__element-navbar-link-orders"
     >
       MEUS PEDIDOS
     </button>
@@ -57,16 +58,27 @@ const Navbar = () => {
           className={ `nav-button${buttonSelected ? '-selected' : ''}` }
           type="button"
           onClick={ () => handleClickFirstButton(role, navigate) }
+          data-testid={
+            role === 'customer'
+              ? 'customer_products__element-navbar-link-products'
+              : 'customer_products__element-navbar-link-orders'
+          }
         >
           { setFirstButtonText(role) }
         </button>
         { role === 'customer' && renderSecondButton() }
       </div>
       <div className="navbar-2">
-        <div className="navbar-name">{ user.name }</div>
+        <div
+          className="navbar-name"
+          data-testid="ustomer_products__element-navbar-user-full-name"
+        >
+          { user.name }
+        </div>
         <button
           type="button"
           onClick={ handleClickExitButton }
+          data-testid="customer_products__element-navbar-link-logout"
         >
           Sair
         </button>
