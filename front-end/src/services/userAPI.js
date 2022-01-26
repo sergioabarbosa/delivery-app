@@ -1,6 +1,16 @@
 import axios from 'axios';
 
-const URL = 'http://localhost:3001/';
+const baseURL = 'http://localhost:3001';
+
+const register = async ({ name, email, password }) => {
+  const { data } = await axios.post(`${baseURL}/users/register`, {
+    name,
+    email,
+    password,
+  });
+
+  return data;
+};
 
 const create = async (token, user) => {
   const { data: created } = await axios.post(
@@ -17,7 +27,7 @@ const create = async (token, user) => {
 
 const getAll = async (token) => {
   const { data: users } = await axios.get(
-    `${URL}users`,
+    `${baseURL}/users`,
     {
       headers: {
         Authorization: token,
@@ -29,7 +39,7 @@ const getAll = async (token) => {
 
 const remove = async (id, token) => {
   const { data: response } = await axios.delete(
-    `${URL}users/${id}`,
+    `${baseURL}/users/${id}`,
     {
       headers: {
         Authorization: token,
@@ -41,6 +51,7 @@ const remove = async (id, token) => {
 };
 
 export default {
+  register,
   getAll,
   remove,
   create,
