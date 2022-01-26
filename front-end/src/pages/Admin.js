@@ -1,8 +1,12 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import { UserDetailTable, Navbar } from '../components';
+import { UserProvider } from '../context';
 
 const Admin = () => (
-  <Navbar />
+  <UserProvider>
+    <Navbar />
+    <UserDetailTable />
+  </UserProvider>
 );
 
 export default Admin;
