@@ -1,7 +1,8 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 const CustomerOrderDetails = () => (
-  <h2>CustomerOrderDetails</h2>
+  <Navbar />
 );
 
 export default CustomerOrderDetails;

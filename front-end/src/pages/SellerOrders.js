@@ -1,7 +1,8 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 const SellerOrders = () => (
-  <h2>SellerOrders</h2>
+  <Navbar />
 );
 
 export default SellerOrders;

@@ -1,7 +1,8 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 const CustomerCheckoutSuccess = () => (
-  <h2>CustomerCheckoutSuccess</h2>
+  <Navbar />
 );
 
 export default CustomerCheckoutSuccess;

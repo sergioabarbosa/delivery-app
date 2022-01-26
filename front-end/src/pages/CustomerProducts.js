@@ -1,7 +1,8 @@
 import React from 'react';
+import { Navbar } from '../components';
 
 const CustomerProducts = () => (
-  <h2>CustomerProducts</h2>
+  <Navbar userRole="customer" />
 );
 
 export default CustomerProducts;
