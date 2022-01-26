@@ -1,10 +1,11 @@
 import React from 'react';
-import { UserDetailTable, Navbar } from '../components';
+import { Navbar, NewUserForm, UserDetailTable } from '../components';
 import { UserProvider } from '../context';
 
 const Admin = () => (
   <UserProvider>
     <Navbar />
+    <NewUserForm />
     <UserDetailTable />
   </UserProvider>
 );
