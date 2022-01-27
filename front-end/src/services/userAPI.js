@@ -13,8 +13,8 @@ const register = async ({ name, email, password }) => {
 };
 
 const create = async (token, user) => {
-  const { data: created } = await axios.post(
-    `${URL}users`,
+  const { data } = await axios.post(
+    `${baseURL}/users`,
     { ...user },
     {
       headers: {
@@ -22,7 +22,7 @@ const create = async (token, user) => {
       },
     },
   );
-  return created;
+  return data;
 };
 
 const getAll = async (token) => {

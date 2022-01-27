@@ -3,20 +3,38 @@ import { userAPI, validate } from '../../services';
 import { UserContext } from '../../context';
 import './style.css';
 
+const FIVE_SECONDS = 5000;
+
 const NewUserForm = () => {
-  const { setUsers, token, users } = useContext(UserContext);
+  const { token, users, setUsers } = useContext(UserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [type, setType] = useState('Cliente');
   const [role, setRole] = useState('customer');
   const [disabled, setDisabled] = useState(true);
+  const [conflictError, setConflictError] = useState(false);
 
   useEffect(() => {
     const { error } = validate.adminCreate({ name, email, password, role });
     if (!error) return setDisabled(false);
     setDisabled(true);
   }, [name, email, password, type, role]);
+
+  const clearForm = () => {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setType('Cliente');
+  };
+
+  const renderError = () => (
+    <p
+      data-testid="admin_manage__element-invalid-register"
+    >
+      Erro: Nome e/ou email já cadastrado
+    </p>
+  );
 
   const handleSelectChange = ({ target: { value } }) => {
     setType(value);
@@ -32,8 +50,14 @@ const NewUserForm = () => {
       delete user.createdAt;
       delete user.updatedAt;
       setUsers([...users, user]);
+      clearForm();
     } catch (e) {
+      setConflictError(true);
+      setTimeout(() => {
+        setConflictError(false);
+      }, FIVE_SECONDS);
       console.log(e);
+      clearForm();
     }
   };
 
@@ -121,6 +145,7 @@ const NewUserForm = () => {
             CADASTRAR
           </button>
         </form>
+        { conflictError && renderError() }
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { userAPI } from '../../services';
 import { UserContext } from '../../context';
 import { dataTestIds, userHelper } from '../../helpers';
@@ -6,6 +6,19 @@ import './style.css';
 
 const UserDetailTable = () => {
   const { users, token, setUsers } = useContext(UserContext);
+
+  useEffect(() => {
+    if (token) {
+      (async () => {
+        try {
+          const data = await userAPI.getAll(token);
+          setUsers(data);
+        } catch (e) {
+          console.log(e);
+        }
+      })();
+    }
+  }, [token, setUsers]);
 
   const handleClickDelete = async (id) => {
     try {

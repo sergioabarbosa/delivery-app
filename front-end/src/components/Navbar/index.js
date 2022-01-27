@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { userLocalStorage } from '../../services';
+import { UserContext } from '../../context';
 import './style.css';
 
 const handleClickFirstButton = (role, navigate) => {
@@ -25,10 +26,15 @@ const setFirstButtonText = (role) => {
 const Navbar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { setToken } = useContext(UserContext);
 
   const [user] = useState(userLocalStorage.get());
   const [buttonSelected, setButtonSelected] = useState(true);
-  const { role } = user;
+  const { role, token } = user;
+
+  useEffect(() => {
+    setToken(token);
+  }, [setToken, token]);
 
   useEffect(() => {
     if (pathname === '/customer/orders') return setButtonSelected(false);

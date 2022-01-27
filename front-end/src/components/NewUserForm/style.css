@@ -3,14 +3,25 @@
   width: 90%;
 }
 
+.new-user-container h3 {
+  margin: 15px 0;
+}
+
 .new-user-form-container {
   align-items: center;
   background-color: #f2fffc;
   box-shadow: 0 0 1px black;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-height: 80px;
   padding: 5px 15px;
+}
 
+.new-user-form-container p {
+  color: red;
+  font-size: 12px;
+  margin: 10px 0;
 }
 
 .new-user-form-container form {
@@ -35,6 +46,11 @@
   cursor: pointer;
   height: 35px;
   padding: 0 10px;
+}
+
+.new-user-form-container button:hover {
+  background-color: #036b52;
+  box-shadow: 0 0 5px #036b52;
 }
 
 .new-user-form-container button:disabled {
