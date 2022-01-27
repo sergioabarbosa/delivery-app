@@ -1,7 +1,8 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 
 const CustomerCheckout = () => (
-  <h2>CustomerCheckout</h2>
+  <Navbar />
 );
 
 export default CustomerCheckout;

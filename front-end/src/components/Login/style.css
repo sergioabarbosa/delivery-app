@@ -1,5 +1,100 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.logoImg {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.imgSize {
+  width: 30%;
+}
+
+.login {
+  background-color: #e5e5e5;
+  border-color: black 1px;
+  border-radius: 5px;
+  margin: 50px auto;
+  max-width: 700px;
+  min-width: 320px;
+  padding: 30px 70px;
+  width: 60%;
+}
+
+.titleLogin {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.6em;
+  justify-content: center;
+  margin-bottom: 5px;
+  padding-top: 5px;
+}
+
+.divpai {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.spanEmail {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+}
+
+.buttonsLogin {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.buttonOne {
+  background-color: #036b52;
+  border: solid #036b52 0.1px;
+  border-radius: 7px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.5em;
+  margin-top: 10px;
+  padding: 8px 75px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.buttonOne:disabled {
+  opacity: 0.2;
+}
+
+.buttonTwo {
+  background-color: #f2fffc;
+  border: solid #036b52 0.1px;
+  border-radius: 7px;
+  color: #036b52;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.2em;
+  margin-top: 15px;
+  padding: 13px 9px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.inputLogin, .inputPassword {
+  background-color: white;
+  border: none;
+  border-radius: 2px;
+  margin-top: 5px;
+  padding: 15px 30px;
+  width: 100%;
+}
+
+.placeHolderClass {
+  font-size: 1.6em;
+}
+
+.buttonsLogin p {
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
 }

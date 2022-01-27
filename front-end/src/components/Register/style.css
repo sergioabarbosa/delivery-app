@@ -1,5 +1,58 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+.titulo-cadastro {
+  color: #066a75;
+  font-family: Arial , sans-serif;
+  font-size: 48px;
+  padding: 2px 10px;
+  text-align: center;
+}
+
+.box-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.form-register {
+  align-items: center;
+  background: #e5e5e5;
+  border-radius: 4px;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  margin-top: 10vh;
+  padding: 25px;
+  width: 30vw;
+}
+
+.form-register-name, .form-register-email, .form-register-password {
+  border: none;
+  border-radius: 2px;
+  display: flex;
+  margin: 10px 0;
+  padding: 10px 20px;
+  width: 30vh;
+}
+
+.button-register {
+  background-color: #036b52;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 7px;
+  width: 30vh;
+}
+
+.button-register:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.form-register p {
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
 }

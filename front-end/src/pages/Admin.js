@@ -1,7 +1,12 @@
 import React from 'react';
+import { Navbar, NewUserForm, UserDetailTable } from '../components';
 
 const Admin = () => (
-  <h2>Admin</h2>
+  <>
+    <Navbar />
+    <NewUserForm />
+    <UserDetailTable />
+  </>
 );
 
 export default Admin;

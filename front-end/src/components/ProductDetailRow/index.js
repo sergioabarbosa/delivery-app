@@ -1,8 +1,8 @@
 import React from 'react';
 import './style.css';
 
-const DetailRow = () => (
+const ProductDetailRow = () => (
   <h3>DetailRow</h3>
 );
 
-export default DetailRow;
+export default ProductDetailRow;
