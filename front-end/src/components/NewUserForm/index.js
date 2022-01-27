@@ -10,7 +10,7 @@ const NewUserForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [type, setType] = useState('Cliente');
+  // const [type, setType] = useState('Cliente');
   const [role, setRole] = useState('customer');
   const [disabled, setDisabled] = useState(true);
   const [conflictError, setConflictError] = useState(false);
@@ -19,13 +19,13 @@ const NewUserForm = () => {
     const { error } = validate.adminCreate({ name, email, password, role });
     if (!error) return setDisabled(false);
     setDisabled(true);
-  }, [name, email, password, type, role]);
+  }, [name, email, password, role]);
 
   const clearForm = () => {
     setName('');
     setEmail('');
     setPassword('');
-    setType('Cliente');
+    setRole('customer');
   };
 
   const renderError = () => (
@@ -36,12 +36,12 @@ const NewUserForm = () => {
     </p>
   );
 
-  const handleSelectChange = ({ target: { value } }) => {
-    setType(value);
-    if (value === 'Cliente') return setRole('customer');
-    if (value === 'P. Vendedora') return setRole('seller');
-    if (value === 'P. Administradora') return setRole('administrator');
-  };
+  // const handleSelectChange = ({ target: { value } }) => {
+  //   setType(value);
+  //   if (value === 'Cliente') return setRole('customer');
+  //   if (value === 'P. Vendedora') return setRole('seller');
+  //   if (value === 'P. Administradora') return setRole('administrator');
+  // };
 
   const handleSubmit = async (event) => {
     try {
@@ -115,13 +115,13 @@ const NewUserForm = () => {
         Tipo
         <select
           id="role-input"
-          value={ type }
-          onChange={ (e) => handleSelectChange(e) }
+          value={ role }
+          onChange={ ({ target: { value } }) => setRole(value) }
           data-testid="admin_manage__select-role"
         >
-          <option>Cliente</option>
-          <option>P. Vendedora</option>
-          <option>P. Administradora</option>
+          <option value="customer">Cliente</option>
+          <option value="seller">P. Vendedora</option>
+          <option value="administrator">P. Administradora</option>
         </select>
       </label>
     </div>

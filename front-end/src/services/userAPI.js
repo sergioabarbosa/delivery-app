@@ -25,6 +25,17 @@ const create = async (token, user) => {
   return data;
 };
 
+const login = async ({ email, password }) => {
+  const { data: user } = await axios.post(
+    `${baseURL}/login`,
+    {
+      email,
+      password,
+    },
+  );
+  return user;
+};
+
 const getAll = async (token) => {
   const { data: users } = await axios.get(
     `${baseURL}/users`,
@@ -51,6 +62,7 @@ const remove = async (id, token) => {
 };
 
 export default {
+  login,
   register,
   getAll,
   remove,

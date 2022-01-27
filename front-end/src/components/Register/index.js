@@ -1,30 +1,51 @@
-import React, { useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import React, { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import userValidations from '../../services/userValidations';
-import 'react-toastify/dist/ReactToastify.css';
-import userAPI from '../../services/userAPI';
+import { userAPI } from '../../services';
+import { UserContext } from '../../context';
 import './style.css';
+
+const FIVE_SECONDS = 5000;
 
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [errorRegister, setErrorRegister] = useState(false);
+  const { saveUser } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      await userAPI.register({ name, email, password });
+      const user = await userAPI.register({ name, email, password });
+      delete user.createdAt;
+      delete user.updatedAt;
+      saveUser(user);
+      navigate('/customer/products');
     } catch (err) {
-      toast('Não foi possível cadastrar!');
+      console.log(err);
+      setErrorRegister(true);
+      setTimeout(() => {
+        setErrorRegister(false);
+      }, FIVE_SECONDS);
     }
   };
 
   useEffect(() => {
     const { error } = userValidations({ name, email, password });
-    console.log(error);
     if (!error) setDisabled(false);
   }, [name, email, password]);
+
+  const renderError = () => (
+    <p
+      data-testid="common_register__element-invalid_register"
+    >
+      Erro: Usuário já cadastrado
+    </p>
+  );
 
   return (
     <div className="box-form">
@@ -72,18 +93,7 @@ const Register = () => {
         >
           CADASTRAR
         </button>
-        <ToastContainer
-          data-testid="common_register__element-invalid_register"
-          position="bottom-center"
-          autoClose={ 5000 }
-          hideProgressBar={ false }
-          newestOnTop={ false }
-          closeOnClick
-          rtl={ false }
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
+        { errorRegister && renderError() }
       </form>
     </div>
   );

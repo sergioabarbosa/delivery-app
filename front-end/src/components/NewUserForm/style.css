@@ -26,13 +26,19 @@
 
 .new-user-form-container form {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   width: 100%;
+}
+
+.new-user-form-container label {
+  margin-top: 10px;
 }
 
 .new-user-form-container input, .new-user-form-container select {
   border: 1px solid rgb(189, 184, 184);
   border-radius: 4px;
+  margin-bottom: 10px;
   padding: 8px;
   width: 230px;
 }

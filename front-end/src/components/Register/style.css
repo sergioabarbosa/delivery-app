@@ -28,13 +28,12 @@
 }
 
 .form-register-name, .form-register-email, .form-register-password {
+  border: none;
   border-radius: 2px;
   display: flex;
+  margin: 10px 0;
+  padding: 10px 20px;
   width: 30vh;
-}
-
-label .form-register-email, label .form-register-password {
-  margin-top: 20px;
 }
 
 .button-register {
@@ -42,7 +41,7 @@ label .form-register-email, label .form-register-password {
   border-radius: 3px;
   color: white;
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 10px;
   padding: 7px;
   width: 30vh;
 }
@@ -50,4 +49,10 @@ label .form-register-email, label .form-register-password {
 .button-register:disabled {
   cursor: not-allowed;
   opacity: 0.7;
+}
+
+.form-register p {
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
 }

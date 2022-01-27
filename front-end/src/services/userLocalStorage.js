@@ -7,7 +7,12 @@ const clear = () => {
   localStorage.removeItem('user');
 };
 
+const save = (user) => {
+  localStorage.setItem('user', JSON.stringify(user));
+};
+
 export default {
   get,
   clear,
+  save,
 };

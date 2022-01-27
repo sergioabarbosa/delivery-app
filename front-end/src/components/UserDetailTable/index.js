@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { userAPI } from '../../services';
 import { UserContext } from '../../context';
-import { dataTestIds, userHelper } from '../../helpers';
+import { dataTestIds } from '../../helpers';
 import './style.css';
 
 const UserDetailTable = () => {
@@ -22,7 +22,7 @@ const UserDetailTable = () => {
 
   const handleClickDelete = async (id) => {
     try {
-      userAPI.remove(id, token);
+      await userAPI.remove(id, token);
       const newUsers = users.filter((user) => user.id !== id);
       setUsers(newUsers);
     } catch (e) {
@@ -49,26 +49,31 @@ const UserDetailTable = () => {
         <table>
           { renderTableHead() }
           <tbody>
-            { users.map(({ id, name, email, role }, index) => (
-              <tr className="users-row" key={ `user-${index}` }>
-                <td data-testid={ `${dataTestIds.item}${index}` }>{ id }</td>
-                <td data-testid={ `${dataTestIds.name}${index}` }>{ name }</td>
-                <td data-testid={ `${dataTestIds.email}${index}` }>{ email }</td>
-                <td
-                  data-testid={ `${dataTestIds.role}${index}` }
-                >
-                  { userHelper.setRoleText(role) }
-                </td>
-                <td data-testid={ `${dataTestIds.remove}${index}` }>
-                  <button
-                    type="button"
-                    onClick={ () => handleClickDelete(id) }
+            { users.filter(({ role }) => role !== 'administrator')
+              .map(({ id, name, email, role }, index) => (
+                <tr className="users-row" key={ `user-${index}` }>
+                  <td
+                    data-testid={ `${dataTestIds.user.item}${index}` }
                   >
-                    Excluir
-                  </button>
-                </td>
-              </tr>
-            )) }
+                    { index + 1 }
+                  </td>
+                  <td data-testid={ `${dataTestIds.user.name}${index}` }>{ name }</td>
+                  <td data-testid={ `${dataTestIds.user.email}${index}` }>{ email }</td>
+                  <td
+                    data-testid={ dataTestIds.user.role }
+                  >
+                    { role === 'customer' ? 'Cliente' : 'P. Vendedora' }
+                  </td>
+                  <td data-testid={ `${dataTestIds.user.remove}${index}` }>
+                    <button
+                      type="button"
+                      onClick={ () => handleClickDelete(id) }
+                    >
+                      Excluir
+                    </button>
+                  </td>
+                </tr>
+              )) }
           </tbody>
         </table>
       </div>
