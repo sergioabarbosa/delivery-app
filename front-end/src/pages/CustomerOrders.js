@@ -1,8 +1,12 @@
 import React from 'react';
-import { Navbar } from '../components';
+import { Navbar, OrderList } from '../components';
+import { OrderProvider } from '../context';
 
 const CustomerOrders = () => (
-  <Navbar />
+  <OrderProvider>
+    <Navbar />
+    <OrderList />
+  </OrderProvider>
 );
 
 export default CustomerOrders;

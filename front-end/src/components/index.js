@@ -2,7 +2,7 @@ export { default as DetailList } from './DetailList';
 export { default as Login } from './Login';
 export { default as Navbar } from './Navbar';
 export { default as NewUserForm } from './NewUserForm';
-export { default as OrderCard } from './OrderCard';
+export { default as OrderDetailTable } from './OrderDetailTable';
 export { default as OrderInfoForm } from './OrderInfoForm';
 export { default as OrderList } from './OrderList';
 export { default as ProductCard } from './ProductCard';

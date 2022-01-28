@@ -51,20 +51,26 @@ const UserDetailTable = () => {
           <tbody>
             { users.filter(({ role }) => role !== 'administrator')
               .map(({ id, name, email, role }, index) => (
-                <tr className="users-row" key={ `user-${index}` }>
+                <tr className="users-row" key={ `user-${index + 1}` }>
                   <td
-                    data-testid={ `${dataTestIds.user.item}${index}` }
+                    data-testid={ `${dataTestIds.user.item}${index + 1}` }
                   >
                     { index + 1 }
                   </td>
-                  <td data-testid={ `${dataTestIds.user.name}${index}` }>{ name }</td>
-                  <td data-testid={ `${dataTestIds.user.email}${index}` }>{ email }</td>
+                  <td data-testid={ `${dataTestIds.user.name}${index + 1}` }>{ name }</td>
+                  <td
+                    data-testid={
+                      `${dataTestIds.user.email}${index + 1}`
+                    }
+                  >
+                    { email }
+                  </td>
                   <td
                     data-testid={ dataTestIds.user.role }
                   >
                     { role === 'customer' ? 'Cliente' : 'P. Vendedora' }
                   </td>
-                  <td data-testid={ `${dataTestIds.user.remove}${index}` }>
+                  <td data-testid={ `${dataTestIds.user.remove}${index + 1}` }>
                     <button
                       type="button"
                       onClick={ () => handleClickDelete(id) }

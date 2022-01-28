@@ -418,11 +418,13 @@ paths:
   /sales:
     get:
       security:
-        - adminAuth: []
+        - consumidorAuth: []
+          vendedorAuth: []
+          adminAuth: []
       tags:
         - Sales
       summary: "Lista todos as vendas cadastrados (auth: admin)"
-      description: Verifica se o usuário está autenticado, tem nível de autenticação mínimo de admin e lista todos as vendas cadastradas no banco de dados
+      description: Verifica se o usuário está autenticado e lista todos as vendas cadastradas no banco de dados
       responses:
         200:
           description: Retorna todos os usuários cadastrados no banco de dados
