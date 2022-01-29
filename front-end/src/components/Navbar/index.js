@@ -77,7 +77,7 @@ const Navbar = () => {
       <div className="navbar-2">
         <div
           className="navbar-name"
-          data-testid="ustomer_products__element-navbar-user-full-name"
+          data-testid="customer_products__element-navbar-user-full-name"
         >
           { user.name }
         </div>

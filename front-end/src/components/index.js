@@ -5,7 +5,6 @@ export { default as NewUserForm } from './NewUserForm';
 export { default as OrderDetailTable } from './OrderDetailTable';
 export { default as OrderInfoForm } from './OrderInfoForm';
 export { default as OrderList } from './OrderList';
-export { default as ProductCard } from './ProductCard';
 export { default as ProductDetailRow } from './ProductDetailRow';
 export { default as ProductList } from './ProductList';
 export { default as Register } from './Register';

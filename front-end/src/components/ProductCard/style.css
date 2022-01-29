@@ -3,3 +3,44 @@
   margin: 0;
   padding: 0;
 }
+
+.section-product-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.div-product-card {
+  align-items: center;
+  background-color: lightgreen;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  margin: 20px;
+  width: 200px;
+}
+
+.img-product-card {
+  background-color: lightgrey;
+  height: 30vh;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* .price-product-card { } */
+
+/* .title-product-card {} */
+.form-quantity-product-card {
+  align-items: center;
+  background-color: lightblue;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.button-product-car {
+  position: fixed;
+}
+
+.form-quantity-product-card input {
+  appearance: none;
+}
