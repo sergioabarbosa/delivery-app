@@ -19,12 +19,12 @@ const ProductList = () => {
   };
 
   return (
-    <section className="section-product-cards">
+    <section className="order-list-container">
       {products && products.length ? products.map((product, index) => (
         <ProductCard key={ `card-${index + 1}` } product={ product } index={ index } />
       )) : <span>Loading</span>}
       <button
-        className="button-product-car"
+        className="total-price-fixed"
         type="button"
         onClick={ () => navigate('/customer/checkout') }
         data-testid="customer_products__button-cart"

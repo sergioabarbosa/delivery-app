@@ -9,11 +9,15 @@ const OrderDetailTable = () => {
   const { orders, updateStatus } = useContext(OrderContext);
   const { id } = useParams();
   const [order, setOrder] = useState(null);
+  const [status, setStatus] = useState('');
   const { role } = userLocalStorage.get();
 
   useEffect(() => {
     const filteredOrder = orders.filter(({ id: orderId }) => orderId === +id);
-    setOrder(filteredOrder[0]);
+    if (filteredOrder[0]) {
+      setOrder(filteredOrder[0]);
+      setStatus(filteredOrder[0].status);
+    }
   }, [id, orders]);
 
   const handleBtnClick = () => {
@@ -47,7 +51,7 @@ const OrderDetailTable = () => {
       type="button"
       onClick={ () => updateStatus(id, 'Preparando') }
       data-testid={ dataTestIds.orderDetail.seller.btnPrep }
-      disabled={ order.status !== 'Pendente' }
+      disabled={ status !== 'Pendente' }
     >
       PREPARAR PEDIDO
     </button>
@@ -77,8 +81,8 @@ const OrderDetailTable = () => {
           onClick={ handleBtnClick }
           data-testid={ dataTestIds.orderDetail[role].btn }
           disabled={
-            (role === 'seller' && order.status !== 'Preparando')
-            || (role === 'customer' && order.status !== 'Em Trânsito')
+            (role === 'seller' && status !== 'Preparando')
+            || (role === 'customer' && status !== 'Em Trânsito')
           }
         >
           { role === 'seller' ? 'SAIU PARA ENTREGA' : 'MARCAR COMO ENTREGUE'}

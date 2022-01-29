@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom';
-import { userLocalStorage } from '../../services';
+import { userLocalStorage, checkoutLocalStorage } from '../../services';
 import { UserContext } from '../../context';
 import './style.css';
 
@@ -44,6 +44,7 @@ const Navbar = () => {
   const handleClickExitButton = () => {
     navigate('/login');
     userLocalStorage.clear();
+    checkoutLocalStorage.clear();
   };
 
   const renderSecondButton = () => (

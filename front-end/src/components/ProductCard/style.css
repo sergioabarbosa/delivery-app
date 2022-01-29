@@ -1,46 +1,79 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.section-product-cards {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.div-product-card {
-  align-items: center;
-  background-color: lightgreen;
+.product-card-container {
+  border: 1px solid rgba(128, 128, 128, 0.205);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  height: 250px;
-  margin: 20px;
-  width: 200px;
+  height: 300px;
+  margin: 20px 10px;
+  position: relative;
+  width: 230px;
 }
 
-.img-product-card {
-  background-color: lightgrey;
-  height: 30vh;
-  object-fit: cover;
+.product-card-img-container {
+  background-color: white;
+  display: flex;
+  height: 75%;
+  justify-content: center;
   width: 100%;
 }
 
-/* .price-product-card { } */
+.product-card-img {
+  height: 100%;
+}
 
-/* .title-product-card {} */
-.form-quantity-product-card {
+.product-card-price {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 650;
+  left: 10px;
+  padding: 3px 8px;
+  position: absolute;
+  top: 10px;
+}
+
+.product-card-bot {
   align-items: center;
-  background-color: lightblue;
+  background-color: #eaf1ef;
   display: flex;
-  justify-content: center;
-  margin: 10px;
+  flex-direction: column;
+  height: 25%;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
-.button-product-car {
-  position: fixed;
+.product-card-name {
+  font-size: 14px;
 }
 
-.form-quantity-product-card input {
-  appearance: none;
+.product-card-quantity {
+  align-items: center;
+  display: flex;
+}
+
+.product-card-quantity input {
+  border: 0.5px solid gray;
+  height: 100%;
+  padding: 10px;
+  text-align: center;
+  width: 35px;
+}
+
+.product-card-quantity button {
+  background-color: #036b52;
+  border: none;
+  color: white;
+  font-size: 30px;
+  font-weight: 700;
+  height: 100%;
+  padding: 0 5px;
+  width: 35px;
+}
+
+.product-card-quantity button:nth-of-type( 1 ) {
+  border-radius: 6px 0 0 6px;
+}
+
+.product-card-quantity button:nth-of-type( 2 ) {
+  border-radius: 0 6px 6px 0;
 }

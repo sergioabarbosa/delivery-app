@@ -51,69 +51,67 @@ const ProductCard = ({ product, index }) => {
 
   return (
     <div
-      className="div-product-card"
+      className="product-card-container"
       data-testid={ `customer_products__element-card-price-${index + 1}` }
     >
-      <img
-        className="img-product-card"
-        alt={ name }
-        data-testid={ `customer_products__img-card-bg-image-${index + 1}` }
-        src={ urlImage }
-      />
-
-      <span
-        className="price-product-card"
-        id={ id }
-        data-testid={ `customer_products__element-card-price-${index + 1}` }
-      >
-        { `${price.replace('.', ',')}` }
-      </span>
-
-      <p
-        className="title-product-card"
-        data-testid={ `customer_products__element-card-title-${index + 1}` }
-      >
-        {name}
-      </p>
-
-      <div className="form-quantity-product-card">
-
-        <button
-          type="button"
-          value=""
-          id="withdraw"
-          onClick={ () => handleClick('sub') }
-          data-testid={ `customer_products__button-card-rm-item-${index + 1}` }
-          disabled={ !quantity }
-        >
-          -
-        </button>
-
-        <label htmlFor="quant">
-          <input
-            type="text"
-            name="quant"
-            id={ `quantity-${index + 1}` }
-            onChange={ (e) => handleChange(e) }
-            value={ quantity }
-            data-testid={ `customer_products__input-card-quantity-${index + 1}` }
-          />
-        </label>
-
-        <button
-          type="button"
-          value=""
-          id="add"
-          onClick={ () => handleClick('add') }
-          data-testid={ `customer_products__button-card-add-item-${index + 1}` }
-        >
-          +
-        </button>
-
+      <div className="product-card-img-container">
+        <img
+          className="product-card-img"
+          alt={ name }
+          data-testid={ `customer_products__img-card-bg-image-${index + 1}` }
+          src={ urlImage }
+        />
       </div>
-
+      <p className="product-card-price">
+        R$
+        {' '}
+        <span
+          id={ id }
+          data-testid={ `customer_products__element-card-price-${index + 1}` }
+        >
+          { `${price.replace('.', ',')}` }
+        </span>
+      </p>
+      <div className="product-card-bot">
+        <p
+          className="product-card-name"
+          data-testid={ `customer_products__element-card-title-${index + 1}` }
+        >
+          {name}
+        </p>
+        <div className="product-card-quantity">
+          <button
+            type="button"
+            value=""
+            id="withdraw"
+            onClick={ () => handleClick('sub') }
+            data-testid={ `customer_products__button-card-rm-item-${index + 1}` }
+            disabled={ !quantity }
+          >
+            -
+          </button>
+          <label htmlFor="quant">
+            <input
+              type="text"
+              name="quant"
+              id={ `quantity-${index + 1}` }
+              onChange={ (e) => handleChange(e) }
+              value={ quantity }
+              data-testid={ `customer_products__input-card-quantity-${index + 1}` }
+            />
+          </label>
+          <button
+            type="button"
+            value=""
+            id="add"
+            onClick={ () => handleClick('add') }
+            data-testid={ `customer_products__button-card-add-item-${index + 1}` }
+          >
+            +
+          </button>
+        </div>
+      </div>
     </div>
-
   );
 };
 
