@@ -1,8 +1,13 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import { CheckoutDetailTable, CheckoutInfoForm, Navbar } from '../components';
+import { ProductProvider } from '../context';
 
 const CustomerCheckout = () => (
-  <Navbar />
+  <ProductProvider>
+    <Navbar />
+    <CheckoutDetailTable />
+    <CheckoutInfoForm />
+  </ProductProvider>
 );
 
 export default CustomerCheckout;

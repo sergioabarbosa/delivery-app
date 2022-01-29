@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState, useContext } from 'react';
 import { UserContext } from '../../context';
-import { userAPI, validate } from '../../services';
+import { userAPI, validate, userLocalStorage } from '../../services';
 import deliveryPhoto from '../../images/delivery.png';
 import './style.css';
 
@@ -10,6 +10,13 @@ const FIVE_SECONDS = 5000;
 const Login = () => {
   const navigate = useNavigate();
   const { saveUser } = useContext(UserContext);
+
+  useEffect(() => {
+    const user = userLocalStorage.get();
+    if (user && user.role === 'customer') return navigate('/customer/products');
+    if (user && user.role === 'seller') return navigate('/seller/orders');
+    if (user && user.role === 'administrator') return navigate('/admin/manage');
+  }, [navigate]);
 
   const data = {
     email: '',

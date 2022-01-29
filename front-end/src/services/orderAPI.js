@@ -39,8 +39,22 @@ const updateStatus = async (id, status, token) => {
   return data;
 };
 
+const post = async (sale, token) => {
+  const { data } = await axios.post(
+    `${URL}sales`,
+    { ...sale },
+    {
+      headers: {
+        Authorization: token,
+      },
+    },
+  );
+  return data;
+};
+
 export default {
   getAll,
   getByUser,
   updateStatus,
+  post,
 };

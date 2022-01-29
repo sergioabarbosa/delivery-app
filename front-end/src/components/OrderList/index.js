@@ -18,7 +18,6 @@ const OrderList = () => {
             <OrderCard
               key={ `order-card-${index + 1}` }
               order={ order }
-              index={ index }
               role={ role }
             />
           ))

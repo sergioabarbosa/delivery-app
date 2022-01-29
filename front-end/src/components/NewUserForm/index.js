@@ -10,7 +10,6 @@ const NewUserForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [type, setType] = useState('Cliente');
   const [role, setRole] = useState('customer');
   const [disabled, setDisabled] = useState(true);
   const [conflictError, setConflictError] = useState(false);
@@ -35,13 +34,6 @@ const NewUserForm = () => {
       Erro: Nome e/ou email já cadastrado
     </p>
   );
-
-  // const handleSelectChange = ({ target: { value } }) => {
-  //   setType(value);
-  //   if (value === 'Cliente') return setRole('customer');
-  //   if (value === 'P. Vendedora') return setRole('seller');
-  //   if (value === 'P. Administradora') return setRole('administrator');
-  // };
 
   const handleSubmit = async (event) => {
     try {

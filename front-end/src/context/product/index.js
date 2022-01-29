@@ -1,6 +1,11 @@
 import React, { useEffect, useState, createContext } from 'react';
 import PropTypes from 'prop-types';
-import { checkoutLocalStorage, userLocalStorage, productAPI } from '../../services';
+import {
+  checkoutLocalStorage,
+  userLocalStorage,
+  productAPI,
+  orderAPI,
+  validate } from '../../services';
 
 export const ProductContext = createContext();
 
@@ -42,12 +47,42 @@ const ProductProvider = ({ children }) => {
       }));
   };
 
+  const getCheckout = () => {
+    const checkoutProducts = checkout.map(({ id, quantity }) => ({ id, quantity }));
+    const checkoutTotalPrice = +(checkout
+      .reduce((acc, { price, quantity }) => acc + +price * quantity, 0).toFixed(2));
+    const checkoutUserId = userLocalStorage.get().id;
+
+    return {
+      userId: checkoutUserId,
+      totalPrice: checkoutTotalPrice,
+      products: checkoutProducts,
+    };
+  };
+
+  const postSale = async (checkoutInfo) => {
+    try {
+      const sale = {
+        ...getCheckout(),
+        ...checkoutInfo,
+      };
+      const { error } = validate.sale(sale);
+      if (!error) {
+        const { id } = await orderAPI.post(sale, token);
+        return id;
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const productContextValue = {
     products,
     checkout,
     setProducts,
     updateCheckout,
     removeProduct,
+    postSale,
   };
 
   return (

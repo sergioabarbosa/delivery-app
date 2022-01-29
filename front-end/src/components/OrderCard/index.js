@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { orderHelper } from '../../helpers';
 import './style.css';
 
-const OrderCard = ({ order, index, role }) => {
+const OrderCard = ({ order, role }) => {
   const navigate = useNavigate();
 
   const {
@@ -25,7 +25,7 @@ const OrderCard = ({ order, index, role }) => {
       <div className="order-number-container">
         <p>Pedido</p>
         <p
-          data-testid={ `seller_orders__element-order-id-${index + 1}` }
+          data-testid={ `${role}_orders__element-order-id-${id}` }
         >
           { orderHelper.getOrderNumber(id) }
         </p>
@@ -33,18 +33,26 @@ const OrderCard = ({ order, index, role }) => {
       <div className="order-info-container">
         <div className="order-info-cima">
           <div
-            data-testeid={ `seller_orders__element-delivery-status-${index + 1}` }
+            data-testid={ `${role}_orders__element-delivery-status-${id}` }
             className={ `order-info-status ${status}` }
           >
-            {status.toUpperCase()}
+            {status}
           </div>
           <div className="order-info-numbers">
-            <div>{orderHelper.formateDate(saleDate)}</div>
-            <div>{`R$ ${totalPrice.replace('.', ',')}`}</div>
+            <div
+              data-testid={ `${role}_orders__element-order-date-${id}` }
+            >
+              {orderHelper.formateDate(saleDate)}
+            </div>
+            <div
+              data-testid={ `${role}_orders__element-card-price-${id}` }
+            >
+              {`R$ ${totalPrice.replace('.', ',')}`}
+            </div>
           </div>
         </div>
         <p
-          data-testid={ `seller_orders__element-card-address-${index + 1}` }
+          data-testid={ `${role}_orders__element-card-address-${id}` }
           className="order-info-baixo"
         >
           {`${deliveryAddress}, ${deliveryNumber}`}
@@ -63,7 +71,6 @@ OrderCard.propTypes = {
     saleDate: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
   }).isRequired,
-  index: PropTypes.number.isRequired,
   role: PropTypes.string.isRequired,
 };
 

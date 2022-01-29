@@ -67,7 +67,7 @@ const OrderDetailTable = () => {
           className={ order.status }
           data-testid={ dataTestIds.orderDetail[role].status }
         >
-          { order.status.toUpperCase() }
+          { order.status }
         </div>
       </div>
       <div className="right">
@@ -98,7 +98,7 @@ const OrderDetailTable = () => {
             { !order
               ? <tr><td>Carregando...</td></tr>
               : order.products.map(({ name, details: { quantity }, price }, index) => (
-                <tr className="product-row" key={ `user-${index + 1}` }>
+                <tr className="product-row" key={ `product-${index + 1}` }>
                   <td
                     data-testid={
                       `${dataTestIds.orderDetail[role].tableNumber}${index + 1}`
