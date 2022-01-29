@@ -19,6 +19,6 @@ module.exports = (io, socket) => {
 
     await Sale.update({ status }, { where: { id } });
 
-    io.emit('updateStatus', { id, status });
+    socket.broadcast.emit('updateStatus', { id, status });
   });
 };

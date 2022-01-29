@@ -6,8 +6,7 @@
 .table-container {
   background-color: #f2fffc;
   box-shadow: 0 0 1px black;
-  height: 40vh;
-  min-height: 200px;
+  min-height: 40vw;
   padding: 5px 15px;
 }
 
@@ -36,6 +35,7 @@
 .users-row td:nth-child( 1 ) {
   background-color: #2fc18c;
   border-radius: 8px 0 0 8px;
+  color: black;
 }
 
 .users-row td:nth-child( 2 ) {

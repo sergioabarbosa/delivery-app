@@ -1,13 +1,13 @@
 const express = require('express');
 
-const { auth, admin, adminOrSeller } = require('../middlewares');
+const { auth, adminOrSeller } = require('../middlewares');
 
 const saleController = require('../controllers/sale');
 
 const router = express.Router();
 
 router.post('/', auth, saleController.create);
-router.get('/', auth, admin, saleController.getAll);
+router.get('/', auth, saleController.getAll);
 router.get('/user/:userId', auth, saleController.getByUserId);
 router.get('/seller/:sellerId', auth, adminOrSeller, saleController.getBySellerId);
 router.get('/:id', auth, adminOrSeller, saleController.getById);

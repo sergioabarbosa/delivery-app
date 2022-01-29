@@ -1,8 +1,12 @@
 import React from 'react';
-import { Navbar } from '../components';
+import { Navbar, ProductList } from '../components';
+import { ProductProvider } from '../context';
 
 const CustomerProducts = () => (
-  <Navbar userRole="customer" />
+  <ProductProvider>
+    <Navbar />
+    <ProductList />
+  </ProductProvider>
 );
 
 export default CustomerProducts;

@@ -1,8 +1,12 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import { Navbar, OrderDetailTable } from '../components';
+import { OrderProvider } from '../context';
 
 const SellerOrderDetails = () => (
-  <Navbar />
+  <OrderProvider>
+    <Navbar />
+    <OrderDetailTable />
+  </OrderProvider>
 );
 
 export default SellerOrderDetails;

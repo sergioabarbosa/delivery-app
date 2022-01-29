@@ -10,7 +10,6 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   const saveUser = async (loggedUser) => {
-    delete loggedUser.id;
     setUser(loggedUser);
     userLocalStorage.save(loggedUser);
   };
