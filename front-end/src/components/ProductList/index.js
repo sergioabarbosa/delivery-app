@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProductCard from '../ProductCard';
+import ProductCard from '../ProductCard/ProductCard';
 import { ProductContext } from '../../context/product';
 import './style.css';
 

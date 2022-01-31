@@ -8,7 +8,6 @@ import {
   CustomerOrders,
   CustomerOrderDetails,
   CustomerCheckout,
-  CustomerCheckoutSuccess,
   SellerOrders,
   SellerOrderDetails,
 } from '../pages';
@@ -21,7 +20,6 @@ const Routes = () => (
     <Route path="/customer/orders/:id" element={ <CustomerOrderDetails /> } />
     <Route path="/customer/orders" element={ <CustomerOrders /> } />
     <Route path="/customer/products" element={ <CustomerProducts /> } />
-    <Route path="/customer/checkout/success" element={ <CustomerCheckoutSuccess /> } />
     <Route path="/customer/checkout" element={ <CustomerCheckout /> } />
     <Route path="/register" element={ <Register /> } />
     <Route path="/login" element={ <Login /> } />

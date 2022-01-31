@@ -5,6 +5,5 @@ export { default as CustomerProducts } from './CustomerProducts';
 export { default as CustomerOrders } from './CustomerOrders';
 export { default as CustomerOrderDetails } from './CustomerOrderDetails';
 export { default as CustomerCheckout } from './CustomerCheckout';
-export { default as CustomerCheckoutSuccess } from './CustomerCheckoutSuccess';
 export { default as SellerOrders } from './SellerOrders';
 export { default as SellerOrderDetails } from './SellerOrderDetails';

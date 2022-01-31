@@ -8,9 +8,10 @@ const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [token, setToken] = useState('');
   const [user, setUser] = useState({});
+  const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
-    if (token) {
+    if (token && mounted) {
       (async () => {
         try {
           const data = await userAPI.getAll(token);
@@ -20,7 +21,8 @@ const UserProvider = ({ children }) => {
         }
       })();
     }
-  }, [token, setUsers]);
+    return () => setMounted(false);
+  }, [token, setUsers, mounted]);
 
   const saveUser = async (loggedUser) => {
     setUser(loggedUser);

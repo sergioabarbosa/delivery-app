@@ -52,7 +52,6 @@ const ProductCard = ({ product, index }) => {
   return (
     <div
       className="product-card-container"
-      data-testid={ `customer_products__element-card-price-${index + 1}` }
     >
       <div className="product-card-img-container">
         <img

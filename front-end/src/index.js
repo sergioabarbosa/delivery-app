@@ -6,9 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 
 ReactDOM.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
   document.getElementById('root'),
 );
 
