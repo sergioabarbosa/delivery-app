@@ -53,6 +53,10 @@ const manageUsers = {
   remove: 'admin_manage__element-user-table-remove-',
 };
 
+const sellerOrders = {
+  orderCardId: 'seller_orders__element-order-id-',
+};
+
 export default {
   login,
   navbar,
@@ -60,4 +64,5 @@ export default {
   productCard,
   checkout,
   manageUsers,
+  sellerOrders,
 };

@@ -15,13 +15,18 @@ const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [checkout, setCheckout] = useState(checkoutLocalStorage.get() || []);
   const [token] = useState(userLocalStorage.get().token);
+  const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      const prod = await productAPI.getAll(token);
-      setProducts(prod);
-    })();
-  }, [setProducts, token]);
+    if (mounted) {
+      (async () => {
+        const prod = await productAPI.getAll(token);
+        setProducts(prod);
+      })();
+    }
+
+    return () => setMounted(false);
+  }, [mounted, setProducts, token]);
 
   useEffect(() => {
     checkoutLocalStorage.save(checkout);

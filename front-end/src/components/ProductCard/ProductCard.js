@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { ProductContext } from '../../context/product';
+import { ProductContext } from '../../context';
 import './style.css';
 
 const MINUS_ONE = -1;

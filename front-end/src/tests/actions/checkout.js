@@ -27,10 +27,31 @@ const create = () => {
   userEvent.type(products.p2.quantity, '3');
 
   userEvent.click(products.p3.btnAdd);
+  userEvent.click(products.p3.btnRm);
+  userEvent.click(products.p3.btnAdd);
   userEvent.click(products.p3.btnAdd);
   userEvent.click(products.p3.btnRm);
 
   userEvent.type(products.p4.quantity, '5');
 };
 
-export default { create };
+const removeThirdProduct = () => {
+  const btnRm = screen.getByTestId(`${dataTestIds.checkout.tableRemove}2`);
+  userEvent.click(btnRm);
+};
+
+const phillCheckoutForm = () => {
+  const sellerSelect = screen.getByTestId(dataTestIds.checkout.formSeller);
+  const deliveryAddressInput = screen.getByTestId(dataTestIds.checkout.formAddress);
+  const deliveryNumberInput = screen.getByTestId(dataTestIds.checkout.formNumber);
+
+  userEvent.selectOptions(sellerSelect, '2');
+  userEvent.type(deliveryAddressInput, 'Rua Itacolomi, 14, Higienópolis');
+  userEvent.type(deliveryNumberInput, '14');
+};
+
+export default {
+  create,
+  removeThirdProduct,
+  phillCheckoutForm,
+};

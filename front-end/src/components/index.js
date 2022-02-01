@@ -1,5 +1,6 @@
-export { default as CheckoutDetailTable } from './CheckoutDetailTable';
-export { default as CheckoutInfoForm } from './CheckoutInfoForm';
+export { default as CheckoutDetailTable } from
+  './CheckoutDetailTable/CheckoutDetailTable';
+export { default as CheckoutInfoForm } from './CheckoutInfoForm/CheckoutInfoForm';
 export { default as Login } from './Login';
 export { default as Navbar } from './Navbar';
 export { default as NewUserForm } from './NewUserForm';
