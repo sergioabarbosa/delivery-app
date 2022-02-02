@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import OrderCard from '../OrderCard';
+import OrderCard from '../OrderCard/OrderCard';
 import { OrderContext } from '../../context';
 import { userLocalStorage } from '../../services';
 import './style.css';
@@ -11,7 +11,10 @@ const OrderList = () => {
   const { role, id } = user;
 
   return (
-    <div className="order-list-container">
+    <div
+      className="order-list-container"
+      data-testid="order-list-container"
+    >
       {
         orders.filter(({ seller, customer }) => id === seller.id || id === customer.id)
           .map((order, index) => (

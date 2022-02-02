@@ -53,14 +53,15 @@ const UserDetailTable = () => {
                     { email }
                   </td>
                   <td
-                    data-testid={ dataTestIds.user.role }
+                    data-testid={ `${dataTestIds.user.role}${index + 1}` }
                   >
                     { role === 'customer' ? 'Cliente' : 'P. Vendedora' }
                   </td>
-                  <td data-testid={ `${dataTestIds.user.remove}${index + 1}` }>
+                  <td>
                     <button
                       type="button"
                       onClick={ () => handleClickDelete(id) }
+                      data-testid={ `${dataTestIds.user.remove}${index + 1}` }
                     >
                       Excluir
                     </button>

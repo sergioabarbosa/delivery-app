@@ -14,31 +14,6 @@ const getAll = async (token) => {
   return data;
 };
 
-const getByUser = async (id, role, token) => {
-  const { data } = await axios.get(
-    `${URL}sales/${role}/${id}`,
-    {
-      headers: {
-        Authorization: token,
-      },
-    },
-  );
-  return data;
-};
-
-const updateStatus = async (id, status, token) => {
-  const { data } = await axios.patch(
-    `${URL}sales/${id}`,
-    { status },
-    {
-      headers: {
-        Authorization: token,
-      },
-    },
-  );
-  return data;
-};
-
 const post = async (sale, token) => {
   const { data } = await axios.post(
     `${URL}sales`,
@@ -54,7 +29,5 @@ const post = async (sale, token) => {
 
 export default {
   getAll,
-  getByUser,
-  updateStatus,
   post,
 };

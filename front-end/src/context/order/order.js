@@ -1,7 +1,7 @@
 import React, { useState, createContext, useEffect } from 'react';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
-import { orderAPI, userLocalStorage } from '../../services';
+import { orderAPI, userLocalStorage, validate } from '../../services';
 
 const socket = io('http://localhost:3001/');
 
@@ -10,17 +10,22 @@ export const OrderContext = createContext();
 const OrderProvider = ({ children }) => {
   const { token } = userLocalStorage.get();
   const [orders, setOrders] = useState([]);
+  const [mounted, setMounted] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await orderAPI.getAll(token);
-        setOrders(response);
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-  }, [token]);
+    if (mounted) {
+      (async () => {
+        try {
+          const response = await orderAPI.getAll(token);
+          setOrders(response);
+        } catch (e) {
+          console.log(e);
+        }
+      })();
+    }
+
+    return () => setMounted(false);
+  }, [mounted, token]);
 
   const changeLocalStatus = (id, status) => {
     const updatedOrders = orders.map((order) => {
@@ -38,8 +43,11 @@ const OrderProvider = ({ children }) => {
 
   const updateStatus = async (id, status) => {
     try {
-      socket.emit('updateStatus', { id, status });
-      changeLocalStatus(id, status);
+      const { error } = validate.status(status);
+      if (!error) {
+        socket.emit('updateStatus', { id, status });
+        changeLocalStatus(id, status);
+      }
     } catch (e) {
       console.log(e);
     }

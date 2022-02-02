@@ -21,6 +21,7 @@ const OrderCard = ({ order, role }) => {
       className="order-card-container"
       aria-hidden="true"
       onClick={ () => navigate(`/${role}/orders/${id}`) }
+      data-testid={ `${role}_orders__element-card-${id}` }
     >
       <div className="order-number-container">
         <p>Pedido</p>
