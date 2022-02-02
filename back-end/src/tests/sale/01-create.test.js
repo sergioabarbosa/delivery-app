@@ -58,7 +58,13 @@ describe('POST/sales', () => {
       .post('/sales')
       .set('Authorization', token)
       .send(saleMock.newSale);
+
+      await chai.request(app)
+      .post('/sales')
+      .set('Authorization', token)
+      .send(saleMock.newSale);
     });
+    
     
     it('retorna o código de status 201', () => {
       expect(response).to.have.status(201);

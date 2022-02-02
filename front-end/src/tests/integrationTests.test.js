@@ -1,12 +1,14 @@
 import React from 'react';
 import { screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import puppeteer from 'puppeteer';
 import { dataTestIds, renderWithRouter } from './helpers';
 import App from '../App';
 import {
   login,
   checkout,
-  admin as adminAction } from './actions';
+  admin as adminAction,
+  socket } from './actions';
 import {
   navbar,
   productList,
@@ -497,10 +499,102 @@ describe('07 - Testando se a página "/seller/orders"', () => {
     await waitFor(() => expect(screen.getByTestId(dataTestIds.orderDetail.seller.status))
       .toHaveTextContent('Preparando'));
 
-    const dispatchButton = screen.getByTestId(dataTestIds.orderDetail.seller.btn);
-    userEvent.click(dispatchButton);
+    // const dispatchButton = screen.getByTestId(dataTestIds.orderDetail.seller.btn);
+    // userEvent.click(dispatchButton);
 
-    await waitFor(() => expect(screen.getByTestId(dataTestIds.orderDetail.seller.status))
-      .toHaveTextContent('Em Trânsito'));
+    // await waitFor(() => expect(screen.getByTestId(dataTestIds.orderDetail.seller.status))
+    //   .toHaveTextContent('Em Trânsito'));
+  });
+});
+
+describe('08 - Testando se a página de detalhes do pedido', () => {
+  let browser;
+  let pageOne;
+  let pageTwo;
+  const BASE_URL = 'http://localhost:3000/';
+
+  jest.setTimeout(30000);
+
+  beforeAll(async () => {
+    browser = await puppeteer
+      .launch({
+        args: [
+          '--no-sandbox',
+          '--disable-gpu',
+          '--disable-dev-shm-usage',
+          '--window-size=1920,1080'
+        ],
+        headless: true,
+      });
+
+      pageOne = await browser.newPage();
+      const context = await browser.createIncognitoBrowserContext();
+      pageTwo = await context.newPage();
+    
+      await pageOne.goto(BASE_URL);
+      await socket.loginCustomer(pageOne);
+
+      await pageTwo.goto(BASE_URL);
+      await socket.loginSeller(pageTwo);
+  });
+
+  afterAll(async () => {
+    await browser.close();
+  });
+
+  it('apresente o status de "Preparando" para cliente e vendedor', async () => {
+    const customerStatus = await socket.getInnerText(
+      pageOne,
+      'customer_order_details__element-order-details-label-delivery-status',
+    );
+    expect(customerStatus).toBe('Preparando');
+
+    const sellerStatus = await socket.getInnerText(
+      pageTwo,
+      'seller_order_details__element-order-details-label-delivery-status',
+    );
+    expect(sellerStatus).toBe('Preparando');
+  });
+
+  it('muda o status do pedido para "Em Trânsito" para cliente e vendedor ao clicar no botão', async () => {
+    const dispatchButton = await pageTwo.$(
+      `${socket.dataTestid('seller_order_details__button-dispatch-check')}`,
+    );
+    await dispatchButton.click();
+
+    await pageOne.waitForTimeout(500);
+
+    const customerStatus = await socket.getInnerText(
+      pageOne,
+      'customer_order_details__element-order-details-label-delivery-status',
+    );
+    expect(customerStatus).toBe('Em Trânsito');
+
+    const sellerStatus = await socket.getInnerText(
+      pageTwo,
+      'seller_order_details__element-order-details-label-delivery-status',
+    );
+    expect(sellerStatus).toBe('Em Trânsito');
+  });
+
+  it('muda o status do pedido para "Entregue" para cliente e vendedor ao clicar no botão', async () => {
+    const deliveredButton = await pageOne.$(
+      `${socket.dataTestid('customer_order_details__button-delivery-check')}`,
+    );
+    await deliveredButton.click();
+
+    await pageOne.waitForTimeout(500);
+
+    const customerStatus = await socket.getInnerText(
+      pageOne,
+      'customer_order_details__element-order-details-label-delivery-status',
+    );
+    expect(customerStatus).toBe('Entregue');
+
+    const sellerStatus = await socket.getInnerText(
+      pageTwo,
+      'seller_order_details__element-order-details-label-delivery-status',
+    );
+    expect(sellerStatus).toBe('Entregue');
   });
 });
