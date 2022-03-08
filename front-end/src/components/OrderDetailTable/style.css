@@ -126,6 +126,7 @@
 
 .total-price {
   background-color: #036b52;
+  border: none;
   border-radius: 8px;
   bottom: 10px;
   color: white;

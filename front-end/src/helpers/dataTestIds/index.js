@@ -35,7 +35,22 @@ const orderDetail = {
   },
 };
 
+const checkout = {
+  tableNumber: 'customer_checkout__element-order-table-item-number-',
+  tableName: 'customer_checkout__element-order-table-name-',
+  tableQuantity: 'customer_checkout__element-order-table-quantity-',
+  tablePrice: 'customer_checkout__element-order-table-unit-price-',
+  tableSubTotal: 'customer_checkout__element-order-table-sub-total-',
+  tableRemove: 'customer_checkout__element-order-table-remove-',
+  totalPrice: 'customer_checkout__element-order-total-price',
+  formSeller: 'customer_checkout__select-seller',
+  formAddress: 'customer_checkout__input-address',
+  formNumber: 'customer_checkout__input-addressNumber',
+  formBtn: 'customer_checkout__button-submit-order',
+};
+
 export default {
   user,
   orderDetail,
+  checkout,
 };

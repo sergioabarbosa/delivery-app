@@ -423,7 +423,7 @@ paths:
           adminAuth: []
       tags:
         - Sales
-      summary: "Lista todos as vendas cadastrados (auth: admin)"
+      summary: "Lista todos as vendas cadastrados (auth: consumidor)"
       description: Verifica se o usuário está autenticado e lista todos as vendas cadastradas no banco de dados
       responses:
         200:

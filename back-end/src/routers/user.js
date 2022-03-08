@@ -8,7 +8,7 @@ const router = express.Router({ mergeParams: true });
 
 router.post('/', auth, admin, userController.create);
 router.post('/register', userController.register);
-router.get('/', auth, adminOrSeller, userController.getAll);
+router.get('/', auth, userController.getAll);
 router.get('/sales', auth, adminOrSeller, userController.getAllAndSales);
 router.get('/:id', auth, userController.getById);
 router.get('/:id/sales', auth, userController.getByIdAndSales);
